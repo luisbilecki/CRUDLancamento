@@ -1,0 +1,23 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+ 
+    <persistence-unit name="transpobrasil" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+ 
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_prova" />
+            <property name="javax.persistence.jdbc.user" value="bancodedados" />
+            <property name="javax.persistence.jdbc.password" value="123456" />
+ 
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="connection_pool_size" value="1" />
+        </properties>
+        
+ 
+    </persistence-unit>
+ 
+</persistence>

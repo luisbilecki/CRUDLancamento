@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+ 		 	<h:form id="form">
+	 		 	<h:panelGrid columns="2" cellpadding="5" style="width: 340px">
+	 		 		<p:outputLabel value="Data inicial" for="datainicial"/>	
+	 		 		<p:outputLabel value="Data final" for="datafinal"/>	
+	 		 	</h:panelGrid>	 		 	
+	 		 	
+	 		 	<h:panelGrid columns="2" cellpadding="5">	 		 	
+		 		 	<p:calendar id="datainicial" value="#{lancamentoController.lancamento.dataInicial}" 
+							locale="pt" navigator="true" 
+							pattern="dd/MM/yyyy" readonly="true"
+							showOn="none">
+						<f:converter converterId="com.bilecki.util.LocalDateTimeConverter" />		
+					</p:calendar>
+		 		 	<p:calendar id="datafinal" value="#{lancamentoController.lancamento.dataFinal}" 
+							locale="pt" navigator="true" pattern="EEE dd/MM/yy" readonly="true"
+							showOn="none" >
+					
+						<f:converter converterId="com.bilecki.util.LocalDateTimeConverter" />		
+					</p:calendar>
+	 		 	</h:panelGrid>
+	 		 	
+	 		 	
+	 		 	<h:panelGrid columns="1" cellpadding="5">
+						<p:outputLabel value="Observação" for="observacao"/>
+						<p:inputTextarea id="observacao" rows="5" cols="70" maxlength="1000" 
+							readonly="true" autoResize="false"
+							value="#{lancamentoController.lancamento.observacao}" />
+    					<h:outputText id="display" />	 		 	
+	 		 	</h:panelGrid>	
+	 		 	
+	 		 	<!-- Item -->
+	 		 	<h:panelGrid columns="1" cellpadding="5">
+	 		 		<p:outputLabel value="Itens" />	 		 		
+	 		 	</h:panelGrid>	
+	 		 	
+				<p:dataTable id="itensTable" value="#{lancamentoController.listaItensSalvos}" var="item"
+					emptyMessage="Nenhum item adicionado."
+					reflow="true"
+					style="margin-top: 10px">
+					<p:column headerText="Código">
+							<h:outputText value="#{item.item.codigo}"/>
+						</p:column>
+						
+					<p:column headerText="Descrição">
+						<h:outputText value="#{item.item.descricao}"/>
+					</p:column>
+					
+					
+					<p:column headerText="Preço">
+						<h:outputText value="#{item.item.valor}">
+							<f:convertNumber type="currency" />
+						</h:outputText>
+					</p:column>
+        		    
+				    <f:facet name="footer">
+				        Total do Lançamento: #{lancamentoController.lancamento.valorFormatado}
+				    </f:facet>                  
+								
+				</p:dataTable>
+				<br/>
+				<p:commandButton value="Sair" onclick="PF('dialog-modal-detalhe').hide();$('#form').trigger('reset');"
+					type="button" />
+ 		 	</h:form>
+ 
+</ui:composition>

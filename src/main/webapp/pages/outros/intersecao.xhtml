@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+ 
+<h:head>
+</h:head>
+ 
+<ui:composition template="/template/base.xhtml">
+ 
+ 
+	<ui:define name="content">
+ 
+		   <p:tabView style="width:600px;height:370px;margin:auto;">
+	 		 	<p:tab title="Interseção">
+				  <h:form>
+				  <h:panelGrid columns="2" cellpadding="5">
+				   <p:outputLabel value="Valor 1" for="f1"/><br/>
+				    <p:inputNumber id="f1" value="#{intersecaoBean.f1}"
+				    			   required="true"
+				    			   requiredMessage="Valor 1 obrigatório"
+				    			   thousandSeparator="" 
+				    			   decimalSeparator="." 
+				    			   decimalPlaces="0" />
+	            	<p:spacer/>
+	            	
+	            	
+				   <p:outputLabel value="Valor 2" for="f2"/><br/>
+				    <p:inputNumber id="f2" value="#{intersecaoBean.f2}"
+				    			   required="true"
+				    			   requiredMessage="Valor 2 obrigatório"
+				    			   thousandSeparator="" 
+				    			   decimalSeparator="." 
+				    			   decimalPlaces="0" />
+	            	<p:spacer/>
+	            	
+	            	
+				   <p:outputLabel value="Valor 3" for="f3"/><br/>
+				    <p:inputNumber id="f3" value="#{intersecaoBean.f3}"
+				    			   required="true"
+				    			   requiredMessage="Valor 3 obrigatório"
+				    			   thousandSeparator="" 
+				    			   decimalSeparator="." 
+				    			   decimalPlaces="0" />
+	            	<p:spacer/>
+	            	
+	            	
+				   <p:outputLabel value="Valor 4" for="f4"/><br/>
+				    <p:inputNumber id="f4" value="#{intersecaoBean.f4}"
+				    			   required="true"
+				    			   requiredMessage="Valor 4 obrigatório"
+				    			   thousandSeparator="" 
+				    			   decimalSeparator="." 
+				    			   decimalPlaces="0" />
+	            	<p:spacer/>
+	            	
+				    <h:commandButton action="#{intersecaoBean.calcula}" 
+				             value="Consultar"/>
+				     <p:spacer/>        
+				    <h:outputText value="Mensagem: " /><br />
+				    <h:outputText value="#{intersecaoBean.mensagem}" />
+				    
+				    
+				    <p:messages showDetail="true" autoUpdate="true" closable="true" severity="warn"/>
+	 		 		<p:messages autoUpdate="true" closable="true" severity="error"/>		
+		   			<p:messages showDetail="true" autoUpdate="true" closable="true" severity="info"/>
+ 					</h:panelGrid>
+				  </h:form>
+ 
+	 			</p:tab>		 		
+ 
+	 		</p:tabView>
+ 
+	</ui:define>
+ 
+</ui:composition> 
+ 
+</html>

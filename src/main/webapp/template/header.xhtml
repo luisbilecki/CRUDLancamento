@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:form>
+ 
+		<p:menubar>
+			<p:menuitem value="Home" icon="ui-icon-home" url="/pages/home.xhtml" />
+			<p:submenu label="Cadastro" icon="fa fa-list-alt">
+				<p:menuitem value="Item" url="/pages/item/listarItem.xhtml"/>
+				<p:menuitem value="Lançamento" url="/pages/lancamento/listarLancamento.xhtml"/>
+			</p:submenu>
+			<p:menuitem value="Interseção" url="/pages/outros/intersecao.xhtml" icon="fa fa-list-ol"/>
+			<p:menuitem value="Primos" url="/pages/outros/primos.xhtml" icon="fa fa-bar-chart
+			"/>
+		</p:menubar>
+ 
+	</h:form>
+	
+</html>

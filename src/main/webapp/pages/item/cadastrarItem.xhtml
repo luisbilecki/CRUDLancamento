@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+ 
+<h:head>
+</h:head>
+ 
+<ui:composition template="/template/base.xhtml">
+ 
+ 
+	<ui:define name="content">
+ 
+		   <p:tabView style="width:600px;height:370px;margin:auto;">
+	 		 	<p:tab title="Cadastro de Item">
+ 
+	 		 	<h:form id="form-cadastro">	 	
+ 
+	 		 	<h:panelGrid id="panelGrid-campos-form" columns="2" cellpadding="10">
+ 
+	 		 			<p:outputLabel value="Descrição" for="descricao"/>
+	 		 			<br/>
+	            		<p:inputText id="descricao" 
+	            				  style="width:500px" maxlength="255" 
+	            				  value="#{itemController.item.descricao}"
+	            				  required="true"
+	            				  requiredMessage="A descrição é obrigatória!" />
+	            		<p:spacer/>
+	            		
+	 		 			<p:outputLabel value="Valor" for="valor"/>
+	 		 			<br/>
+	            		<p:inputNumber id="valor" 
+	            				  style="width:200px" 
+	            				  value="#{itemController.item.valor}"
+	            				  required="true"
+	            				  requiredMessage="O valor é obrigatório!"
+	            				  decimalPlaces="2"
+	            				  symbol="R$ "/>
+	            		<p:spacer/>
+ 
+	            		<p:commandButton value="Salvar" 
+	            				 id="commandButton-salvar"
+						 icon="ui-icon-gear"
+						 actionListener="#{itemController.save}"
+						 update="panelGrid-campos-form"/>
+ 
+ 
+	 		 	</h:panelGrid>
+ 
+	 		 		<p:messages showDetail="true" autoUpdate="true" closable="true" severity="warn"/>
+	 		 		<p:messages autoUpdate="true" closable="true" severity="error"/>		
+		   			<p:messages showDetail="true" autoUpdate="true" closable="true" severity="info"/>
+ 
+	 		 		</h:form>
+ 
+	 			 </p:tab>		 		
+ 
+	 		</p:tabView>
+ 
+	</ui:define>
+ 
+</ui:composition> 
+ 
+</html>

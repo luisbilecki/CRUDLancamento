@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+</h:head>
+ 
+<ui:composition template="/template/base.xhtml">
+ 
+	<ui:define name="content">	 		
+ 		<!-- Dialog para edição de item -->
+		<p:dialog header="Editar cadastro de item" 
+				  id="dialog-modal-editar" 
+		   		  widgetVar="dialog-modal-editar" 
+		   		  modal="true" 
+		   		  height="400px"
+		   		  width="550px">
+		   		  
+    		<ui:include src="/pages/item/alterarItem.xhtml"/>
+    	
+		</p:dialog>
+        
+		<h:form style="margin:auto;margin-left:2%;" id="form-consulta">
+			
+			<p:toolbar style="width:98%;">
+				<f:facet name="left">
+		            <p:button value="Novo Item" 
+		            outcome="cadastrarItem"  icon="ui-icon-folder-open"/>
+		        </f:facet>
+	        </p:toolbar>
+ 
+			<p:dataTable id="dataTable-registros"
+						 var="item" 
+						 value="#{itemController.getLista()}" 
+						 rows="15"
+						 paginator="true"
+						 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {JumpToPageDropdown} {NextPageLink} {LastPageLink}"
+                         currentPageReportTemplate="[ Exibindo de {startRecord} a {endRecord} no total de {totalRecords}
+                                                            - Página: {currentPage}/{totalPages} ]"
+                         style="width:98%;">
+ 
+						 <p:column headerText="Código">
+            				<h:outputText value="#{item.codigo}" />
+        				 </p:column>
+ 
+        				 <p:column headerText="Descrição">
+            				<h:outputText value="#{item.descricao}" />
+        				 </p:column>
+ 
+        				 <p:column headerText="Valor">
+            				<h:outputText value="#{item.valor}">
+            					<f:convertNumber currencyCode="BRL" type="currency" />
+            				</h:outputText> 
+        				 </p:column> 
+ 
+        				 <p:column headerText="" style="width:25px;">
+							<p:commandButton icon="ui-icon-pencil" 
+    				    				    title="Editar Registro"                        					 
+                    					    ajax="true" 
+                    					    oncomplete="PF('dialog-modal-editar').show();" 
+                    					    actionListener="#{itemController.carregarItem(item)}"
+                    					    update="dialog-modal-editar"/>
+        				 </p:column>
+ 
+        				 <p:column headerText="" style="width:25px;">
+        				 
+	        				 <p:commandButton icon="ui-icon-trash" 
+	        				    		     title="Excluir Registro"                        					 
+	                        					 ajax="true"
+	                        					 actionListener="#{itemController.delete(item)}"
+	                        					 update="@form" />
+ 
+        				 </p:column>
+ 
+			</p:dataTable>
+ 
+		</h:form>
+ 
+	</ui:define>
+ 
+</ui:composition>
+</html>
